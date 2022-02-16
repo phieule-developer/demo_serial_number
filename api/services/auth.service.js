@@ -1,18 +1,18 @@
 let userModel = require('../models/user.model');
 const bcrypt = require('bcrypt');
 module.exports={
-    login:async (email,password)=>{
+    login:async (user_name,password)=>{
         return new Promise(async (resolve,reject)=>{
-            let check_email = await userModel.findOne({email,status:{$ne:-1}});
+            let check = await userModel.findOne({user_name});
 
-            if(check_email){
-                if(bcrypt.compareSync(password,check_email.password)){
-                    resolve(check_email);
+            if(check){
+                if(bcrypt.compareSync(password,check.password)){
+                    resolve(check);
                 }else{
-                    reject("Email hoặc mật khẩu không chính xác");
+                    reject("Tên tài khoản hoặc mật khẩu không chính xác");
                 }
             }else{
-                reject("Email hoặc mật khẩu không chính xác");
+                reject("Tên tài khoản hoặc mật khẩu không chính xác");
             }
         })
     },
