@@ -9,14 +9,6 @@ module.exports = {
         }
         return user;
     },
-    getOneByPublicKey: async (public_key) => {
-        let user = await userModel.findOne({public_key});
-        if (user) {
-            user.token_verify = "";
-            user.password = "";
-        }
-        return user;
-    },
     updateMe: async (id, body) => {
         let user = await userModel.findByIdAndUpdate(id, body, { new: true });
         return user;

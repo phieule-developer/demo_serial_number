@@ -2,22 +2,22 @@ let mongoose = require('mongoose');
 const { DATABASE_NAME } = require('../../constants/database');
 
 let Schema = new mongoose.Schema({
-    name: {
+    ip: {
         require: true,
         type: String,
         default: ""
     },
-    user_name: {
+    method: {
         require: true,
         type: String,
         default: ""
     },
-    password: {
+    path: {
         type: String,
         required: true,
         default: ""
     },
-    computer_code: {
+    content: {
         type: String,
         require: true,
         default: ""
@@ -29,5 +29,5 @@ let Schema = new mongoose.Schema({
 
 });
 
-mongoose.model(DATABASE_NAME.USER, Schema)
-module.exports = mongoose.model(DATABASE_NAME.USER)
+mongoose.model(DATABASE_NAME.LOG, Schema)
+module.exports = mongoose.model(DATABASE_NAME.LOG)

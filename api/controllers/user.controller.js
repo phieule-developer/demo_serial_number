@@ -15,4 +15,28 @@ module.exports = {
             return ApiResponse(res, 500, CONST.MESSAGE.ERROR, {}, version);
         }
     },
+    getAll: async (req, res) => {
+        try {
+
+            let filter = [
+                {
+                    $sort: {
+                        created_at: -1
+                    }
+                },
+                {
+                    $project: {
+                        password: 0
+                    }
+                }
+            ];
+
+            let result = await userService.getAll(filter);
+
+            return ApiResponse(res, 200, CONST.MESSAGE.SUCCESS, result, version);
+
+        } catch (error) {
+            return ApiResponse(res, 500, CONST.MESSAGE.ERROR, {}, version);
+        }
+    },
 }
